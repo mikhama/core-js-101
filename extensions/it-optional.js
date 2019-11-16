@@ -1,5 +1,5 @@
-function testOptional(title, fn, isAsync) {
-  if (isAsync) {
+function testOptional(title, fn, isAsyncTest) {
+  if (isAsyncTest) {
     it(title, function test(done) {
       try {
         fn.call(this, done);
