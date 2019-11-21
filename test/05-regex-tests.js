@@ -1,5 +1,5 @@
 const assert = require('assert');
-const tasks = require('../task/05-regex-tasks');
+const tasks = require('../src/05-regex-tasks');
 it.optional = require('../extensions/it-optional');
 
 describe('05-regex-tasks', () => {

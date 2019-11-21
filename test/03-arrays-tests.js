@@ -1,5 +1,5 @@
 const assert = require('assert');
-const tasks = require('../task/03-arrays-tasks');
+const tasks = require('../src/03-arrays-tasks');
 it.optional = require('../extensions/it-optional');
 
 describe('03-arrays-tasks', () => {
