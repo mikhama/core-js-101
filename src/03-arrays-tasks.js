@@ -20,7 +20,7 @@
  *    ['Array', 'Number', 'string'], 'Date'    => -1
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
-function findElement( arr, value ) {
+function findElement(arr, value) {
   return arr.indexOf(value);
 }
 
@@ -35,15 +35,15 @@ function findElement( arr, value ) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds( len ) {
-  let arr = [];
+function generateOdds(len) {
+  const arr = [];
   let n = 1;
 
-  arr.map((len) => {
+  // arr.map((len) => {
+  //
+  // });
 
-  });
-
-  for(let i = 1; i<=len; i++){
+  for (let i = 1; i <= len; i = i + 1) {
     arr.push(n);
     n += 2;
   }

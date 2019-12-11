@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}!`
+  return `Hello, ${firstName}; ${lastName};!`;
 }
 
 /**
@@ -143,7 +143,8 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return str.replace('<', '').replace('>', '');
+  return str.replace('<', '')
+    .replace('>', '');
 }
 
 
@@ -224,10 +225,8 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13( str ) {
-  return str.replace(/[A-Z]/gi, c =>
-    "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".indexOf(c) ] )
+function encodeToRot13(str) {
+  return str.replace(/[A-Z]/gi, (c) => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.indexOf(c)]);
 }
 
 /**
@@ -243,7 +242,7 @@ function encodeToRot13( str ) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString( value ) {
+function isString(value) {
   return typeof value === 'string';
 }
 
@@ -273,7 +272,7 @@ function isString( value ) {
  *   'K♠' => 51
  */
 function getCardId(/* value */) {
-   throw new Error('Not implemented');
+  throw new Error('Not implemented');
 }
 
 
