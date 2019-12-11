@@ -44,7 +44,7 @@ function getCicleCircumference(radius) {
  *
  * @param {numder} value1
  * @param {number} value2
- * @return {number}
+ * @return {string}
  *
  * @example:
  *   5, 5  => 5
@@ -52,7 +52,7 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  return (value1 / 2) + (value2 / 2);
 }
 
 /**
@@ -86,7 +86,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(a, b) {
+function getLinearEquationRoot(/* a, b */) {
   throw new Error('Not implemented');
 }
 
