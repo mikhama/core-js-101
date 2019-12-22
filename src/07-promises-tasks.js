@@ -106,12 +106,12 @@ function getFastestPromise(array) {
  *
  */
 function chainPromises(array, action) {
-  return new Promise((resolve) => {
-    const result = [];
-    array.forEach((item) => item.then((answer) => result.push(answer)));
-    resolve(result);
-  })
-    .then((result) => result.reduce(action));
+  return array.reduce(function (chain, item) {
+    return chain.then((r) => item.then((i) => {
+      return action(r, i);
+    })
+      .catch((err) => chain));
+  }, array.shift().catch(() => array.shift()));
 }
 
 module.exports = {
