@@ -110,36 +110,119 @@ function fromJSON(/* proto, json */) {
  *  For more examples see unit tests.
  */
 
+/* eslint max-classes-per-file: ["error", 5] */
+
+class CssSelector {
+  element(value) {
+    if (this.elem) {
+      throw new Error('Element already specified!');
+    }
+    this.elem = value;
+    return this;
+  }
+
+  id(value) {
+    if (this.ident) {
+      throw new Error('Id already specified!');
+    }
+    this.ident = value;
+    return this;
+  }
+
+  class(value) {
+    if (this.classesLst === undefined) {
+      this.classesLst = new Set();
+    }
+    this.classesLst.add(value);
+    return this;
+  }
+
+  attr(value) {
+    if (this.attrsLst === undefined) {
+      this.attrsLst = new Set();
+    }
+    this.attrsLst.add(value);
+    return this;
+  }
+
+  pseudoClass(value) {
+    if (this.pseudoClassesLst === undefined) {
+      this.pseudoClassesLst = new Set();
+    }
+    this.pseudoClassesLst.add(value);
+    return this;
+  }
+
+  pseudoElement(value) {
+    if (this.pseudoEl) {
+      throw new Error('PseudoElement already specified!');
+    }
+    this.pseudoEl = value;
+    return this;
+  }
+
+  stringify() {
+    const elStr = this.elem || '';
+    const id = this.ident ? `#${this.ident}` : '';
+    const classList = this.classesLst ? (
+      Array.from(this.classesLst).reduce((acc, cur) => `${acc}.${cur}`, '')
+    ) : '';
+    const attrList = this.attrsLst ? (
+      Array.from(this.attrsLst).reduce((acc, cur) => `${acc}[${cur}]`, '')
+    ) : '';
+    const pseudoClassList = this.pseudoClassesLst ? (
+      Array.from(this.pseudoClassesLst).reduce((acc, cur) => `${acc}:${cur}`, '')
+    ) : '';
+    const pseudoElement = this.pseudoEl ? `::${this.pseudoElement}` : '';
+
+    return `${elStr}${id}${classList}${attrList}${pseudoClassList}${pseudoElement}`;
+  }
+}
+
+class CssSelectorCombination {
+  constructor(selector1, combinator, selector2) {
+    if (!(selector1 && combinator && selector2)) {
+      throw new Error('All selector1, combinator and selector2 should be specified!');
+    }
+    this.selector1 = selector1;
+    this.selector2 = selector2;
+    this.combinator = combinator;
+  }
+
+  stringify() {
+    return `${this.selector1.stringify()} ${this.combinator} ${this.selector2.stringify()}`;
+  }
+}
+
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    return new CssSelector().element(value);
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    return new CssSelector().id(value);
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    return new CssSelector().class(value);
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    return new CssSelector().attr(value);
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    return new CssSelector().pseudoClass(value);
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    return new CssSelector().pseudoElement(value);
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    return new CssSelectorCombination(selector1, combinator, selector2);
   },
 };
-
 
 module.exports = {
   Rectangle,
