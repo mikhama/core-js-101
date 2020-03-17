@@ -83,6 +83,8 @@ function timeSpanToString(/* startDate, endDate */) {
  * for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
  *
+ * SMALL TIP: convert to radians just once, before return in order to not lost precision
+ *
  * @param {date} date
  * @return {number}
  *
