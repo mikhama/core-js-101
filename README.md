@@ -40,7 +40,7 @@ The task is to implement functions on different Core JS topics. There are nine m
       }
     ```
     Read the task description in the comment above the function. Try to understand the idea. You can see the tests prepared if you don't understand it.
-7. Write your code in `task/*.js`.
+7. Write your code in `src/*.js`.
 
     Remove the throwing error line from function body:
     ```javascript
