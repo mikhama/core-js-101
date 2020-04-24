@@ -1,21 +1,23 @@
 {
-  "name": "core-js-101",
-  "version": "1.0.0",
-  "description": "Core JS 101",
-  "scripts": {
-    "test": "npm run lint && mocha",
-    "lint": "node node_modules/eslint/bin/eslint.js ./src"
-  },
-  "author": "aorgish, mikhama",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mikhama/core-js-101.git"
-  }
+    "name": "core-js-101",
+    "version": "1.0.0",
+    "description": "Core JS 101",
+    "scripts": {
+        "test": "npm run lint && mocha",
+        "lint": "node node_modules/eslint/bin/eslint.js ./src",
+        "mocha": "mocha --full-trace",
+        "lintfix": "node node_modules/eslint/bin/eslint.js ./src --fix"
+    },
+    "author": "aorgish, mikhama",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^6.6.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-plugin-import": "^2.18.2",
+        "mocha": "^6.2.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mikhama/core-js-101.git"
+    }
 }
