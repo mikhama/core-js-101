@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return ('Hello, ' + firstname + ' ' + lastname);
+  return (`Hello, ${firstname} ${lastname}`);
 }
 
 /**
@@ -66,9 +66,9 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.slice(7,-1)
+  return value.slice(7, -1);
 }
-extractNameFromTemplate('Hello, Chuck Norris!')
+extractNameFromTemplate('Hello, Chuck Norris!');
 
 /**
  * Returns a first char of the given string.
@@ -81,7 +81,7 @@ extractNameFromTemplate('Hello, Chuck Norris!')
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-  return value.substr(0,1);
+  return value.substr(0, 1);
 }
 
 /**
@@ -96,7 +96,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  return value.trim(/^\s+|\s+$/g,'');
+  return value.trim(/^\s+|\s+$/g, '');
 }
 
 /**
@@ -175,8 +175,18 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  var separateEmailsBy = ', ';
+  var email = '<none>';
+  var emailsArray = str.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+)/gi);
+  if (emailsArray) {
+    email = '';
+    for (var i = 0; i < emailsArray.length; i++) {
+      if (i != 0) email += separateEmailsBy;
+      email += emailsArray[i];
+    }
+  }
+  return email;
 }
 
 /**
@@ -203,9 +213,9 @@ function extractEmails(/* str */) {
  *
  */
 function getRectangleString(width, height) {
-  let tl = '┌' + '─'.repeat(width - 2) + '┐\n';
-  let ml = '│' + ' '.repeat(width - 2) + '│\n';
-  let dl = '└' + '─'.repeat(width - 2) + '┘\n';
+  const tl = `┌${'─'.repeat(width - 2)}┐\n`;
+  const ml = `│${' '.repeat(width - 2)}│\n`;
+  const dl = `└${'─'.repeat(width - 2)}┘\n`;
   return tl + ml.repeat(height - 2) + dl;
 }
 
@@ -227,10 +237,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  var input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  var index     = x => input.indexOf(x);
-  var translate = x => index(x) > -1 ? output[index(x)] : x;
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const index = (x) => input.indexOf(x);
+  const translate = (x) => (index(x) > -1 ? output[index(x)] : x);
   return str.split('').map(translate).join('');
 }
 
@@ -248,10 +258,10 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (typeof value === "string") {
-		return true;
-	}
-	return false;
+  if (typeof value === 'string') {
+    return true;
+  }
+  return false;
 }
 
 
