@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return (`Hello, ${firstname} ${lastname}`);
+  return (`Hello, ${firstName} ${lastName}!`);
 }
 
 /**
@@ -68,7 +68,6 @@ function getStringFromTemplate(firstName, lastName) {
 function extractNameFromTemplate(value) {
   return value.slice(7, -1);
 }
-extractNameFromTemplate('Hello, Chuck Norris!');
 
 /**
  * Returns a first char of the given string.
@@ -175,18 +174,9 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
+
 function extractEmails(str) {
-  var separateEmailsBy = ', ';
-  var email = '<none>';
-  var emailsArray = str.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+)/gi);
-  if (emailsArray) {
-    email = '';
-    for (var i = 0; i < emailsArray.length; i++) {
-      if (i != 0) email += separateEmailsBy;
-      email += emailsArray[i];
-    }
-  }
-  return email;
+  return str.split(';');
 }
 
 /**
@@ -257,8 +247,9 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
+
 function isString(value) {
-  if (typeof value === 'string') {
+  if (typeof (value) === 'string' || value instanceof String) {
     return true;
   }
   return false;
@@ -289,8 +280,15 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
+
 function getCardId(value) {
-  throw new Error('Not implemented');
+  const arr = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
+  return arr.indexOf(value);
 }
 
 
