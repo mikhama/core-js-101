@@ -239,8 +239,8 @@ function toArrayOfSquares(arr) {
 function getMovingSum(arr) {
   let sum = 0;
   return arr.map((x) => {
-    result += x;
-    return result;
+    sum += x;
+    return sum;
   });
 }
 
@@ -274,12 +274,19 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
+
 function propagateItemsByPositionIndex(arr) {
-  const arrNew = [];
-  arr.map((item, index) => arrNew.splice(index, 1, ...(new Array(index + 1)).fill(item)));
-
+  if (arr === []) {
+    return [];
+  }
+  const newArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    for (let j = 0; j <= i; j += 1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
-
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -464,8 +471,10 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 
-function getIntervalArray(start, end) {
-  return new Array(Math.abs(end - start) + 1).fill('').map((x, i) => start + i);
+function getIdentityMatrix(n) {
+  let arr = new Array(n);
+  arr = arr.fill(0);
+  return arr.map((elem, i) => arr.map((x, j) => 1 - Math.min(Math.abs(i - j), 1)));
 }
 
 /**
@@ -523,7 +532,6 @@ function distinct(arr) {
  *     ],
  *     item => item.country,
  *     item => item.city
- *   )
  *            =>
  *   Map {
  *    "Belarus" => ["Brest", "Grodno", "Minsk"],
