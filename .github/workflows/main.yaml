@@ -1,0 +1,23 @@
+name: core-js-101
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  core-js-101:
+   runs-on: ubuntu-latest
+   steps:
+    - name: checkout sources
+      uses: actions/checkout@master
+    - name: setup node environment
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: install dependencies
+      run: npm install
+    - name: check styles
+      run: npm run lint
+    - name: run tests
+      run: npm run test
