@@ -65,7 +65,7 @@ function getRegexForPitSpot() {
  *  - Contains a lowercase letter
  *  - Contains an uppercase letter
  *  - Contains a number
- *  - Valid passwords will only be alphanumeric characters.
+ *  - Valid passwords will only be alphanumeric characters (+ underscore).
  *
  * @param {number} minLength
  * @return {Regex}
