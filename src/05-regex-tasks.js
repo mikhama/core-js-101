@@ -1,6 +1,6 @@
 /* *******************************************************************************************
  *                                                                                           *
- * Plese read the following tutorial before implementing tasks:                              *
+ * Please read the following tutorial before implementing tasks:                              *
  * https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions            *
  *                                                                                           *
  * You can use the next web site in order to check and build regexps:                        *
