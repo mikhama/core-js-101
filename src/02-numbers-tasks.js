@@ -1,6 +1,6 @@
 /* *******************************************************************************************
  *                                                                                           *
- * Plese read the following tutorial before implementing tasks:                              *
+ * Please read the following tutorial before implementing tasks:                              *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates           *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math     *
@@ -9,9 +9,9 @@
 
 
 /**
- * Returns an area of a rectangle given by width and heigth.
+ * Returns an area of a rectangle given by width and height.
  *
- * @param {numder} width
+ * @param {number} width
  * @param {number} height
  * @return {number}
  *
@@ -35,14 +35,14 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCicleCircumference(/* radius */) {
+function getCircleCircumference(/* radius */) {
   throw new Error('Not implemented');
 }
 
 /**
  * Returns an average of two given numbers.
  *
- * @param {numder} value1
+ * @param {number} value1
  * @param {number} value2
  * @return {number}
  *
@@ -56,7 +56,7 @@ function getAverage(/* value1, value2 */) {
 }
 
 /**
- * Returns a distance beetween two points by cartesian coordinates.
+ * Returns a distance between two points by cartesian coordinates.
  *
  * @param {number} x1
  * @param {number} y1
@@ -158,9 +158,10 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelipidedDiagonal(/* a, b, c */) {
+function getParallelepipedDiagonal(/* a, b, c */) {
   throw new Error('Not implemented');
 }
+
 
 /**
  * Returns the number rounded to specified power of 10.
@@ -205,7 +206,7 @@ function isPrime(/* n */) {
 }
 
 /**
- * Tries to convert value to number and returns it if conversion was successfull;
+ * Tries to convert value to number and returns it if conversion was successful;
  * otherwise returns default value passed as a second argument.
  *
  * @param {any} value
@@ -225,14 +226,14 @@ function toNumber(/* value, def */) {
 
 module.exports = {
   getRectangleArea,
-  getCicleCircumference,
+  getCircleCircumference,
   getAverage,
   getDistanceBetweenPoints,
   getLinearEquationRoot,
   getAngleBetweenVectors,
   getLastDigit,
   parseNumberFromString,
-  getParallelipidedDiagonal,
+  getParallelepipedDiagonal,
   roundToPowerOfTen,
   isPrime,
   toNumber,
