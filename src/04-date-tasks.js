@@ -59,7 +59,7 @@ function isLeapYear(/* date */) {
 
 
 /**
- * Returns the string represention of the timespan between two dates.
+ * Returns the string representation of the timespan between two dates.
  * The format of output string is "HH:mm:ss.sss"
  *
  * @param {date} startDate
