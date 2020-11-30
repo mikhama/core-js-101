@@ -54,7 +54,9 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-
+ const regex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,}$/.test('PASSw0rd'));
+ const newRegex = regex.toString().replace(/6/g, minLength);
+ return newRegex;
 }
 
 
