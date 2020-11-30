@@ -97,14 +97,8 @@ function getArrayOfPositives(arr) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(arr) {
-  const strings = arr.filter(stringsOnly);
-  return strings;
-  function stringsOnly(value) {
-    if (typeof (value) === 'string') {
-      return value;
-    }
-  }
+function getArrayOfStrings(/* arr */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -120,18 +114,8 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(arr) {
-  let index = -1;
-  const length = arr == null ? 0 : arr.length;
-  let resIndex = 0;
-  const result = [];
-  while (index += 1 < length) {
-    const value = arr[index];
-    if (value) {
-      result[resIndex += 1] = value;
-    }
-  }
-  return result;
+function removeFalsyValues(/* arr */) {
+ throw new Error('Not implemented');
 }
 
 /**
@@ -272,8 +256,8 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  const new_Array = [];
-  return arr.reduce((a, b, i) => new_Array[i] = a + b, 0);
+  const newArray = [];
+  return arr.reduce((a, b, i) => newArray[i] = a + b, 0);
 }
 
 /**
@@ -306,15 +290,8 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(arr) {
-  const transform = (arr) => arr.reduce((a, item, i) => (
-    a.concat(Array.from(
-      { length: i + 1 },
-      () => item,
-    ))
-  ), []);
-
-  return transform(arr);
+function propagateItemsByPositionIndex(/* arr */) {
+ throw new Error('Not implemented');
 }
 
 
@@ -331,9 +308,8 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(arr) {
-  arr.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
-  return arr.slice(0, 3);
+function get3TopItems(/* arr */) {
+  throw new Error('Not implemented');
 }
 
 
@@ -479,8 +455,8 @@ function toStringList(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(n) {
-  return Array(n).fill(0).map((elem, i) => Array(n).fill(0).map((elem2, j) => 1 - Math.min(Math.abs(i - j), 1)));
+function getIdentityMatrix(/* n */) {
+  throw new Error('Not implemented');
 }
 
 /**
