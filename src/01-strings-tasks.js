@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}`;
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -126,8 +126,11 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(str, value) {
-  return str.split(value);
+function removeFirstOccurrences(str, value) { /* eslint consistent-return: off */
+  if (str.match(value)) {
+    const newStr = str.replace(value, '');
+    return newStr;
+  }
 }
 
 /**
@@ -176,7 +179,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return JSON.stringify(`[${str}]`);
+  return str.split(';');
 }
 
 /**
@@ -275,6 +278,10 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
+function getCardId(/* value */) {
+  throw new Error('Not implemented');
+}
+
 
 module.exports = {
   concatenateStrings,
