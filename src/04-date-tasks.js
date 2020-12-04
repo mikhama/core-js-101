@@ -21,7 +21,7 @@
  */
 function parseDataFromRfc2822(value) {
   const mydate = new Date(value);
-  return mydate.toDateString();
+  return mydate;
 }
 
 /**
