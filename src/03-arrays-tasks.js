@@ -481,11 +481,8 @@ function getIdentityMatrix(/* n */) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-  const x = [];
-  for (let i = start; i < end; i += 1) {
-    x.push(i);
-  }
-  return x;
+  const result = Array(end - start + 1).fill().map((_, idx) => start + idx);
+  return result;
 }
 
 /**
@@ -581,10 +578,12 @@ function distinct(arr) {
  *
  */
 function swapHeadAndTail(arr) {
-  const half = Math.ceil(arr.length / 2);
-  const firstHalf = arr.splice(0, half);
-  const secondHalf = arr.splice(-half);
-  return secondHalf.concat(firstHalf);
+  const l = arr.length;
+  const r = Math.round(l / 2);
+  const f = Math.floor(l / 2);
+  const a = arr.splice(0, f);
+  const b = arr.splice(r - f);
+  return b.concat(arr, a);
 }
 
 
