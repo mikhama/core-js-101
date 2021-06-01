@@ -20,9 +20,14 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
 }
+Rectangle.prototype.getArea = function getArea() {
+  const area = this.width * this.height;
+  return area;
+};
 
 
 /**
@@ -35,8 +40,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -51,8 +56,9 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const newObj = JSON.parse(json);
+  return Object.assign(Object.create(proto), newObj);
 }
 
 
@@ -111,35 +117,156 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  createElement() {
+    function Element() {
+      this.state = {};
+    }
+
+    function checkOrder(criteria) {
+      if (criteria) {
+        throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
+      }
+    }
+
+    function checkSingle(criteria) {
+      if (criteria) {
+        throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+      }
+    }
+
+
+    Element.prototype.element = function element(value) {
+      checkOrder(this.state.id !== undefined);
+      checkSingle(this.state.element !== undefined);
+
+      this.state.element = value;
+
+      return this;
+    };
+
+    Element.prototype.id = function id(value) {
+      checkOrder(this.state.class !== undefined || this.state.pseudoElement !== undefined);
+      checkSingle(this.state.id !== undefined);
+
+      this.state.id = `#${value}`;
+
+      return this;
+    };
+
+    Element.prototype.class = function _class(value) {
+      checkOrder(this.state.attr !== undefined);
+
+      if (this.state.class === undefined) {
+        this.state.class = '';
+      }
+
+      this.state.class += `.${value}`;
+
+      return this;
+    };
+
+    Element.prototype.attr = function attr(value) {
+      checkOrder(this.state.pseudoClass !== undefined);
+
+      this.state.attr = `[${value}]`;
+
+      return this;
+    };
+
+    Element.prototype.pseudoClass = function pseudoClass(value) {
+      checkOrder(this.state.pseudoElement !== undefined);
+
+      if (this.state.pseudoClass === undefined) {
+        this.state.pseudoClass = '';
+      }
+
+      this.state.pseudoClass += `:${value}`;
+
+      return this;
+    };
+
+    Element.prototype.pseudoElement = function pseudoElement(value) {
+      checkSingle(this.state.pseudoElement !== undefined);
+
+      this.state.pseudoElement = `::${value}`;
+      return this;
+    };
+
+    Element.prototype.stringify = function stringify() {
+      let res = '';
+
+      if (this.state.element !== undefined) {
+        res += `${this.state.element}`;
+      }
+
+      if (this.state.id !== undefined) {
+        res += `${this.state.id}`;
+      }
+
+      if (this.state.class !== undefined) {
+        res += `${this.state.class}`;
+      }
+
+      if (this.state.attr !== undefined) {
+        res += `${this.state.attr}`;
+      }
+
+      if (this.state.pseudoClass !== undefined) {
+        res += `${this.state.pseudoClass}`;
+      }
+
+      if (this.state.pseudoElement !== undefined) {
+        res += `${this.state.pseudoElement}`;
+      }
+
+      if (this.state.combine !== undefined) {
+        res += `${this.state.combine}`;
+      }
+
+      this.state = {};
+
+      return res;
+    };
+
+    return new Element();
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    return this.createElement().element(value);
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    return this.createElement().id(value);
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    return this.createElement().class(value);
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    return this.createElement().attr(value);
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    return this.createElement().pseudoClass(value);
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    return this.createElement().pseudoElement(value);
+  },
+
+  combined: '',
+  combine(selector1, combinator, selector2) {
+    this.combined = `${selector1.stringify()}`
+      .concat(` ${combinator} `)
+      .concat(`${selector2.stringify()}`);
+    return this;
+  },
+
+  stringify() {
+    return this.combined;
   },
 };
-
 
 module.exports = {
   Rectangle,
