@@ -207,9 +207,9 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   const head = `┌${'─'.repeat(width - 2)}┐\n`;
-  const midle = `│${' '.repeat(width - 2)}│\n`;
+  const middle = `│${' '.repeat(width - 2)}│\n`;
   const foot = `└${'─'.repeat(width - 2)}┘\n`;
-  return head + midle.repeat(height - 2) + foot;
+  return head + middle.repeat(height - 2) + foot;
 }
 
 /**
