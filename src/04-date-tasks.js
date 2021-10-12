@@ -1,6 +1,6 @@
 /* *******************************************************************************************
  *                                                                                           *
- * Plese read the following tutorial before implementing tasks:                              *
+ * Please read the following tutorial before implementing tasks:                              *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates#Date_object
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date     *
  *                                                                                           *
@@ -59,7 +59,7 @@ function isLeapYear(/* date */) {
 
 
 /**
- * Returns the string represention of the timespan between two dates.
+ * Returns the string representation of the timespan between two dates.
  * The format of output string is "HH:mm:ss.sss"
  *
  * @param {date} startDate

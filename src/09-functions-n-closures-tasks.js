@@ -1,6 +1,6 @@
 /* *********************************************************************************************
  *                                                                                             *
- * Plese read the following tutorial before implementing tasks:                                *
+ * Please read the following tutorial before implementing tasks:                                *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions                     *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments       *
@@ -110,7 +110,7 @@ function retry(/* func, attempts */) {
  * Returns the logging wrapper for the specified method,
  * Logger has to log the start and end of calling the specified function.
  * Logger has to log the arguments of invoked function.
- * The fromat of output log is:
+ * The format of output log is:
  * <function name>(<arg1>, <arg2>,...,<argN>) starts
  * <function name>(<arg1>, <arg2>,...,<argN>) ends
  *
