@@ -1,6 +1,6 @@
 /* eslint-disable array-bracket-spacing */
 const assert = require('assert');
-const tasks = require('../src/06-objects-tasks');
+const tasks = require('../src/05-objects-tasks');
 it.optional = require('../extensions/it-optional');
 
 describe('06-objects-tasks', () => {

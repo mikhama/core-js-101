@@ -1,5 +1,5 @@
 const assert = require('assert');
-const tasks = require('../src/08-conditions-n-loops-tasks');
+const tasks = require('../src/07-conditions-n-loops-tasks');
 it.optional = require('../extensions/it-optional');
 
 describe('08-conditions-n-loops-tasks', () => {

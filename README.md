@@ -1,17 +1,20 @@
 # Core JS 101
 
+:warning: **Please note that you mustn't open PRs that contains the answers to this repo!**
+
+However, PRs with the fixes or proposals are welcomed!
+
 ## Task
-The task is to implement functions on different Core JS topics. There are nine modules with different tasks. Each module consists of tasks for specified topic:
+The task is to implement functions on different Core JS topics. There are eight modules with different tasks. Each module consists of tasks for specified topic:
 
 1. Strings
 2. Numbers
 3. Arrays
 4. Date
-5. Regexp
-6. Objects
-7. Promises
-8. Conditions and Loops
-9. Functions and Closures
+5. Objects
+6. Promises
+7. Conditions and Loops
+8. Functions and Closures
 
 **Active usage of [documentation](https://developer.mozilla.org/en-US/) is strongly recommended!**
 
@@ -57,7 +60,7 @@ The task is to implement functions on different Core JS topics. There are nine m
 4. Press submit button and enjoy
 
 ## Notes
-* We recommend you to use nodejs of version 10 or lower. If you using any of features that does not supported by node `v10`, score won't be submitted.
+* We recommend you to use nodejs of version 12 or lower. If you using any of features that does not supported by node `v12`, score won't be submitted.
 * Please be sure that each of your test in limit of 30sec.
 * You will get 0 (zero) if you have any eslint's errors or warnings.
 

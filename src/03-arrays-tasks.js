@@ -344,7 +344,7 @@ function getItemsSum(/* arr */) {
  * Returns the number of all falsy value in the specified array
  *
  * @param {array} arr
- * @return {array}
+ * @return {number}
  *
  * @example
  *  [] => 0
