@@ -255,7 +255,7 @@ function getSecondItems(/* arr */) {
 
 /**
  * Propagates every item in sequence its position times
- * Returns an array that consists of: one first item, two second items, tree third items etc.
+ * Returns an array that consists of: one first item, two second items, three third items etc.
  *
  * @param {array} arr
  * @return {array}
