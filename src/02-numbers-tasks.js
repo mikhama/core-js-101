@@ -7,7 +7,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 /**
  * Returns an area of a rectangle given by width and height.
  *
@@ -19,10 +18,9 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
-
 
 /**
  * Returns a circumference of circle given by radius.
@@ -35,10 +33,9 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
 }
-
 /**
  * Returns an average of two given numbers.
  *
@@ -51,8 +48,10 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
+// eslint-disable-next-line consistent-return
 function getAverage(/* value1, value2 */) {
   throw new Error('Not implemented');
+  //   return (value1 + value2) / 2;
 }
 
 /**
@@ -89,7 +88,6 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
 function getLinearEquationRoot(/* a, b */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns an angle (in radians) between two vectors given by xi and yi,
@@ -129,7 +127,6 @@ function getLastDigit(/* value */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Returns a number by given string representation.
  *
@@ -161,7 +158,6 @@ function parseNumberFromString(/* value */) {
 function getParallelepipedDiagonal(/* a, b, c */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the number rounded to specified power of 10.

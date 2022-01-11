@@ -260,11 +260,12 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(value) {
-  if (typeof value === 'string') {
-    return 'true';
-  }
-  return 'false';
+function isString(/* value */) {
+  throw new Error('Not implemented');
+  // if (typeof value === 'string') {
+  //   return 'true';
+  // }
+  // return 'false';
 }
 
 /**
@@ -291,13 +292,14 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(...value) {
-  const i = [];
-  // eslint-disable-next-line array-callback-return
-  value.map((item, index) => {
-    i.push(index);
-  });
-  return i;
+function getCardId(/* ...value */) {
+  throw new Error('Not implemented');
+  // const i = [];
+  // // eslint-disable-next-line array-callback-return
+  // value.map((item, index) => {
+  //   i.push(index);
+  // });
+  // return i;
 }
 
 module.exports = {
