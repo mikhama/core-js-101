@@ -6,6 +6,7 @@
  *                                                                                           *
  ******************************************************************************************* */
 /* eslint linebreak-style: ["error", "windows"] */
+/* eslint linebreak-style: ["error", "windows"] */
 
 /**
  * Returns the result of concatenation of two strings.
