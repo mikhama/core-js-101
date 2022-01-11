@@ -21,16 +21,13 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  // throw new Error('Not implemented');
-  const v1 = value1;
-  const v2 = value2;
-  if (v1.length <= 1) {
-    return v2;
+  if (value1 === '') {
+    return value2;
   }
-  if (v2.length <= 1) {
-    return v1;
+  if (value2 === '') {
+    return value1;
   }
-  return v1 + v2;
+  return value1 + value2;
 }
 
 /**
@@ -62,8 +59,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  const hi = 'Hello,';
-  return `${hi} ${firstName} ${lastName}`;
+  return `${'Hello,'} ${firstName} ${`${lastName}!`}`;
 }
 
 /**
@@ -77,7 +73,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.replace('Hello, ', '');
+  const textDel = value.replace('Hello, ', '');
+  return textDel.slice(0, -1);
 }
 
 /**
@@ -106,7 +103,8 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  return value.replace(/\s+/g, ' ');
+  const textRed = value.replace(/\s+/g, '');
+  return textRed.replace(/,/g, ', ');
 }
 
 /**
@@ -187,7 +185,7 @@ function convertToUpperCase(str) {
  */
 function extractEmails(str) {
   const arrayOfStrings = str.split(';');
-  return arrayOfStrings.join(' , ');
+  return arrayOfStrings;
 }
 
 /**
