@@ -686,6 +686,11 @@ describe('03-arrays-tasks', () => {
         end: 3,
         expected: [3],
       },
+      {
+        start: -5,
+        end: -3,
+        expected: [-5, -4 ,-3],
+      }
     ].forEach((data) => {
       const actual = tasks.getIntervalArray(data.start, data.end);
       assert.deepEqual(
