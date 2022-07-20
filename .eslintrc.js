@@ -19,6 +19,8 @@ module.exports = {
     'linebreak-style': 'off',
     'space-before-blocks': 'off',
     'no-plusplus': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'eslint-disable-next-line': 'off', 
+    'array-callback-return': 'off'
   },
 };
