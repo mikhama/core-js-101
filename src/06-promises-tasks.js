@@ -28,8 +28,18 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+async function willYouMarryMe(isPositiveAnswer) {
+  const yesAnsw = 'Hooray!!! She said "Yes"!';
+  const noAnsw = 'Oh no, she said "No".';
+  const errr = new Error('Wrong parameter is passed! Ask her again.');
+  if (isPositiveAnswer === true) {
+    return new Promise((res) => res(yesAnsw));
+  // eslint-disable-next-line no-else-return
+  } else if (isPositiveAnswer === false) {
+    return new Promise((res) => res(noAnsw));
+  } else {
+    return new Promise((res, req) => req(errr));
+  }
 }
 
 
@@ -48,8 +58,9 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  // throw new Error('Not implemented');
+  return Promise.all(array);
 }
 
 /**
@@ -71,8 +82,9 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  // throw new Error('Not implemented');
+  return Promise.race(array);
 }
 
 /**
@@ -94,6 +106,16 @@ function getFastestPromise(/* array */) {
  */
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
+  // const results = [];
+  // const bar = async (arg) => { const a = await arg; return a; };
+  // // eslint-disable-next-line no-restricted-syntax, no-await-in-loop
+  // for (const thing of array) {
+  //   // eslint-disable-next-line no-await-in-loop
+  //   const a = await bar(thing);
+  //   results.push(a);
+  // }
+  // const sumRes = await results.reduce(action);
+  // return new Promise((res) => res(sumRes));
 }
 
 module.exports = {
