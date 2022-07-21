@@ -109,26 +109,26 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
-  // const dat = new Date(date);
-  // let hour = +dat.getUTCHours();
-  // const min = dat.getUTCMinutes();
-  // if (hour === min) return 0;
-  // if (hour === 3 || Math.abs(hour - 12) === 3 || hour === 21) return Math.PI / 2;
-  // if (hour === 6 || (hour - 12) === 6) return Math.PI;
-  // if (hour >= 12) {
-  //   hour -= 12;
-  // }
-  // const wayHourInOneMin = 1 / 12;
-  // // const oneGrad = Math.PI / 180;
-  // const watchOneHourPositionInGrad = 30;
-  // const wathOneMinPositionInGrad = 6;
-  // const minInGrad = min * wathOneMinPositionInGrad;
-  // const hourInGrad = hour * watchOneHourPositionInGrad;
-  // const difference = wayHourInOneMin * min;
-  // const res = minInGrad - hourInGrad - (difference * wathOneMinPositionInGrad);
-  // return ((res * Math.PI) / 180);
+function angleBetweenClockHands(date) {
+  // throw new Error('Not implemented');
+  const dat = new Date(date);
+  let hour = +dat.getUTCHours();
+  const min = dat.getUTCMinutes();
+  if (hour === min) return 0;
+  if (hour === 3 || Math.abs(hour - 12) === 3 || hour === 21) return Math.PI / 2;
+  if (hour === 6 || (hour - 12) === 6) return Math.PI;
+  if (hour >= 12) {
+    hour -= 12;
+  }
+  const wayHourInOneMin = 1 / 12;
+  const oneGrad = Math.PI / 180;
+  const watchOneHourPositionInGrad = 30;
+  const wathOneMinPositionInGrad = 6;
+  const minInGrad = min * wathOneMinPositionInGrad;
+  const hourInGrad = hour * watchOneHourPositionInGrad;
+  const difference = wayHourInOneMin * min;
+  const res = minInGrad - hourInGrad - (difference * wathOneMinPositionInGrad);
+  return Math.abs(res * oneGrad);
 }
 
 
