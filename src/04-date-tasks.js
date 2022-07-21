@@ -19,8 +19,9 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  // throw new Error('Not implemented');
+  return new Date(value);
 }
 
 /**
@@ -34,8 +35,9 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  // throw new Error('Not implemented');
+  return new Date(value);
 }
 
 
@@ -53,11 +55,11 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  // throw new Error('Not implemented');
+  const year = new Date(date).getUTCFullYear();
+  return +year % 4 === 0 && +year !== 1900;
 }
-
-
 /**
  * Returns the string representation of the timespan between two dates.
  * The format of output string is "HH:mm:ss.sss"
@@ -73,11 +75,24 @@ function isLeapYear(/* date */) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  // throw new Error('Not implemented');
+  const pars = endDate - startDate;
+  const dat = new Date(pars);
+  let hour = dat.getUTCHours();
+  let min = dat.getUTCMinutes();
+  let sek = dat.getUTCSeconds();
+  let milsek = dat.getUTCMilliseconds();
+  // eslint-disable-next-line no-unused-expressions
+  hour < 10 ? hour = `0${hour}` : hour;
+  // eslint-disable-next-line no-unused-expressions
+  min < 10 ? min = `0${min}` : min;
+  // eslint-disable-next-line no-unused-expressions
+  sek < 10 ? sek = `0${sek}` : sek;
+  // eslint-disable-next-line no-unused-expressions
+  milsek.toString().length !== 3 ? milsek = `00${milsek}` : milsek;
+  return `${hour}:${min}:${sek}.${milsek}`;
 }
-
-
 /**
  * Returns the angle (in radians) between the hands of an analog clock
  * for the specified Greenwich time.
@@ -96,6 +111,24 @@ function timeSpanToString(/* startDate, endDate */) {
  */
 function angleBetweenClockHands(/* date */) {
   throw new Error('Not implemented');
+  // const dat = new Date(date);
+  // let hour = +dat.getUTCHours();
+  // const min = dat.getUTCMinutes();
+  // if (hour === min) return 0;
+  // if (hour === 3 || Math.abs(hour - 12) === 3 || hour === 21) return Math.PI / 2;
+  // if (hour === 6 || (hour - 12) === 6) return Math.PI;
+  // if (hour >= 12) {
+  //   hour -= 12;
+  // }
+  // const wayHourInOneMin = 1 / 12;
+  // // const oneGrad = Math.PI / 180;
+  // const watchOneHourPositionInGrad = 30;
+  // const wathOneMinPositionInGrad = 6;
+  // const minInGrad = min * wathOneMinPositionInGrad;
+  // const hourInGrad = hour * watchOneHourPositionInGrad;
+  // const difference = wayHourInOneMin * min;
+  // const res = minInGrad - hourInGrad - (difference * wathOneMinPositionInGrad);
+  // return ((res * Math.PI) / 180);
 }
 
 
