@@ -23,8 +23,11 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  // throw new Error('Not implemented');
+  return function (x) {
+    return f(g(x));
+  };
 }
 
 
@@ -44,11 +47,13 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  // throw new Error('Not implemented');
+  function ss(x) {
+    return x ** exponent;
+  }
+  return ss;
 }
-
-
 /**
  * Returns the polynom function of one argument based on specified coefficients.
  * See: https://en.wikipedia.org/wiki/Polynomial#Definition
@@ -81,11 +86,13 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  // throw new Error('Not implemented');
+  const aa = func();
+  return function (){
+    return aa;
+  };
 }
-
-
 /**
  * Returns the function trying to call the passed function and if it throws,
  * retrying it specified number of attempts.
@@ -95,16 +102,28 @@ function memoize(/* func */) {
  * @return {Function}
  *
  * @example
- * const attempt = 0, retryer = retry(() => {
+ * const attempt = 0;
+ * const retryer = retry(() => {
  *      if (++attempt % 2) throw new Error('test');
  *      else return attempt;
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  // throw new Error('Not implemented');
+  // eslint-disable-next-line func-names, consistent-return
+  return function () {
+    for (let i = 0; i < attempts; i += 1) {
+      try {
+        const aa = func();
+        if (aa) return aa;
+      } catch (error) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+    }
+  };
 }
-
 
 /**
  * Returns the logging wrapper for the specified method,
@@ -122,7 +141,7 @@ function retry(/* func, attempts */) {
  * @example
  *
  * const cosLogger = logger(Math.cos, console.log);
- * const result = cosLogger(Math.PI));     // -1
+ * const result = cosLogger(Math.PI);     // -1
  *
  * log from console.log:
  * cos(3.141592653589793) starts
@@ -131,9 +150,16 @@ function retry(/* func, attempts */) {
  */
 function logger(/* func, logFunc */) {
   throw new Error('Not implemented');
+  // const a = function (x) {
+  //   return func(x);
+  // };
+  // return function (x) {
+  //   return logFunc(a(x));
+  // };
 }
-
-
+// const cosLogger = logger(Math.cos, console.log);
+// const result = cosLogger(Math.PI); // -1
+// console.log(result);
 /**
  * Return the function with partial applied arguments
  *
@@ -147,8 +173,12 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return function (...abs){
+    if (!abs) return fn(...args1);
+    const aaa = args1.concat(abs);
+    return fn(...aaa);
+  };
 }
 
 
@@ -169,8 +199,13 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  // throw new Error('Not implemented');
+  let start = startFrom - 1;
+  return function () {
+    // eslint-disable-next-line no-return-assign
+    return start += 1;
+  };
 }
 
 
