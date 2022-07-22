@@ -154,6 +154,7 @@ function retry(func, attempts) {
 function logger(func, logFunc) {
   // throw new Error('Not implemented');
 
+  // eslint-disable-next-line func-names
   return function (...args) {
     const log = args.map((item) => JSON.stringify(item)).join(',');
     logFunc(`${func.name}(${log}) starts`);
@@ -162,9 +163,7 @@ function logger(func, logFunc) {
     return result;
   };
 }
-// const cosLogger = logger(Math.cos, console.log);
-// const result = cosLogger(Math.PI); // -1
-// console.log(result);
+
 /**
  * Return the function with partial applied arguments
  *
