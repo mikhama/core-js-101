@@ -106,18 +106,25 @@ function getFastestPromise(array) {
  */
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
-  // const results = [];
-  // const bar = async (arg) => { const a = await arg; return a; };
-  // // eslint-disable-next-line no-restricted-syntax, no-await-in-loop
-  // for (const thing of array) {
-  //   // eslint-disable-next-line no-await-in-loop
-  //   const a = await bar(thing);
-  //   results.push(a);
+  // async function writePromiseDateToArr(arr, num) {
+  //   const results = [];
+  //   if (arr.length - 1 === num) {
+  //     const numb = await arr[num];
+  //     results.push(numb);
+  //     return results;
+  //   }
+  //   const numb = await arr[num];
+  //   results.push(numb);
+  //   return writePromiseDateToArr(arr, num + 1);
   // }
-  // const sumRes = await results.reduce(action);
-  // return new Promise((res) => res(sumRes));
+  // try {
+  //   const sss = await writePromiseDateToArr(array, 0);
+  //   const sumRes = sss.reduce(action);
+  //   return new Promise((res) => res(sumRes));
+  // } catch (error) {
+  //   console.error(error);
+  // }
 }
-
 module.exports = {
   willYouMarryMe,
   processAllPromises,
