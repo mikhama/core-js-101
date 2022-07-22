@@ -104,26 +104,13 @@ function getFastestPromise(array) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
-  // async function writePromiseDateToArr(arr, num) {
-  //   const results = [];
-  //   if (arr.length - 1 === num) {
-  //     const numb = await arr[num];
-  //     results.push(numb);
-  //     return results;
-  //   }
-  //   const numb = await arr[num];
-  //   results.push(numb);
-  //   return writePromiseDateToArr(arr, num + 1);
-  // }
-  // try {
-  //   const sss = await writePromiseDateToArr(array, 0);
-  //   const sumRes = sss.reduce(action);
-  //   return new Promise((res) => res(sumRes));
-  // } catch (error) {
-  //   console.error(error);
-  // }
+async function chainPromises(array, action) {
+  // throw new Error('Not implemented');
+  const arr = [];
+  await array.forEach((item) => {
+    item.then((res) => arr.push(res)).catch((err) => new Error(err));
+  });
+  return arr.reduce(action);
 }
 module.exports = {
   willYouMarryMe,

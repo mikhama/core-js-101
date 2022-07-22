@@ -150,14 +150,17 @@ function retry(func, attempts) {
  * cos(3.141592653589793) ends
  *
  */
-function logger(/* func, logFunc */) {
-  throw new Error('Not implemented');
-  // const a = function (x) {
-  //   return func(x);
-  // };
-  // return function (x) {
-  //   return logFunc(a(x));
-  // };
+// eslint-disable-next-line no-unused-vars
+function logger(func, logFunc) {
+  // throw new Error('Not implemented');
+
+  return function (...args) {
+    const log = args.map((item) => JSON.stringify(item)).join(',');
+    logFunc(`${func.name}(${log}) starts`);
+    const result = func(...args);
+    logFunc(`${func.name}(${log}) ends`);
+    return result;
+  };
 }
 // const cosLogger = logger(Math.cos, console.log);
 // const result = cosLogger(Math.PI); // -1

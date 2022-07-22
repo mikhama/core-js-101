@@ -572,8 +572,19 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  // throw new Error('Not implemented');
+  const result = new Map();
+  array.map((item) => {
+    if (result.get(keySelector(item)) === undefined) {
+      result.set(keySelector(item), [valueSelector(item)]);
+    } else {
+      const key = result.get(keySelector(item));
+      key.push(valueSelector(item));
+    }
+    return item;
+  });
+  return result;
 }
 
 
@@ -607,18 +618,9 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
-  // eslint-disable-next-line consistent-return
-  // const arr2 = indexes.map((item) => {
-  //   const a = arr[item];
-  //   if (indexes.length === 1) return a;
-  //   const b = a[item];
-  //   if (indexes.length === 2) return b;
-  //   const c = b[item];
-  //   if (indexes.length === 3) return c;
-  // });
-  // return arr2.reverse()[0];
+function getElementByIndexes(arr, indexes) {
+  // throw new Error('Not implemented');
+  return indexes.reduce((a, b) => a[b], arr);
 }
 
 
