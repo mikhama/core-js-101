@@ -25,6 +25,7 @@
  */
 function getComposition(f, g) {
   // throw new Error('Not implemented');
+  // eslint-disable-next-line func-names
   return function (x) {
     return f(g(x));
   };
@@ -89,6 +90,7 @@ function getPolynom() {
 function memoize(func) {
   // throw new Error('Not implemented');
   const aa = func();
+  // eslint-disable-next-line func-names
   return function () {
     return aa;
   };
@@ -174,6 +176,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
+  // eslint-disable-next-line func-names
   return function (...abs) {
     if (!abs) return fn(...args1);
     const aaa = args1.concat(abs);
@@ -202,6 +205,7 @@ function partialUsingArguments(fn, ...args1) {
 function getIdGeneratorFunction(startFrom) {
   // throw new Error('Not implemented');
   let start = startFrom - 1;
+  // eslint-disable-next-line func-names
   return function () {
     // eslint-disable-next-line no-return-assign
     return start += 1;
