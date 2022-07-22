@@ -30,7 +30,7 @@
 // eslint-disable-next-line consistent-return
 function getFizzBuzz(num) {
   // throw new Error('Not implemented');
-  for (let i = num; i < 101; i++) {
+  for (let i = num; i < 101; i += 1) {
     if (i % 15 === 0) return 'FizzBuzz';
     if (i % 3 === 0) return 'Fizz';
     if (i % 5 === 0) return 'Buzz';
@@ -71,7 +71,7 @@ function getFactorial(n) {
 function getSumBetweenNumbers(n1, n2) {
   // throw new Error('Not implemented');
   let count = 0;
-  for (let i = n1; i <= n2; i++){
+  for (let i = n1; i <= n2; i += 1) {
     count += i;
   }
   return count;
@@ -351,7 +351,7 @@ function isBracketsBalanced(str) {
   for (let i = 0; i < arr.length; i += 1) {
     if (closeBrackets.includes(arr[i]) && stack.length === 0) return false;
     const closeInd = closeBrackets.indexOf(arr[i]);
-    if (stack[stack.length - 1] === openBrackets[closeInd] && closeBrackets.includes(arr[i])){
+    if (stack[stack.length - 1] === openBrackets[closeInd] && closeBrackets.includes(arr[i])) {
       stack.pop();
     } else if (openBrackets.includes(arr[i])) {
       stack.push(arr[i]);
@@ -495,7 +495,7 @@ function evaluateTicTacToePosition(position) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i <= 7; i++) {
+  for (let i = 0; i <= 7; i += 1) {
     const winCondition = winningConditions[i];
     const a = winCondition[0];
     const b = winCondition[1];

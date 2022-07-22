@@ -297,6 +297,7 @@ function getSecondItems(arr) {
 function propagateItemsByPositionIndex(arr) {
   // throw new Error('Not implemented');
   const arr2 = [];
+  // eslint-disable-next-line array-callback-return
   arr.map((item, ind) => {
     const arr3 = new Array(ind + 1).fill(item);
     arr3.map((it) => arr2.push(it));

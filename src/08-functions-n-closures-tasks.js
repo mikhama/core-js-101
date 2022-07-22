@@ -89,7 +89,7 @@ function getPolynom() {
 function memoize(func) {
   // throw new Error('Not implemented');
   const aa = func();
-  return function (){
+  return function () {
     return aa;
   };
 }
@@ -174,7 +174,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...abs){
+  return function (...abs) {
     if (!abs) return fn(...args1);
     const aaa = args1.concat(abs);
     return fn(...aaa);

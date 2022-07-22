@@ -238,11 +238,11 @@ function encodeToRot13(str) {
   const upperWords = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const lowerWords = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
   let res = '';
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     if (upperWords.includes(str[i])) {
       const ind = +upperWords.indexOf(str[i]) + 13;
       res += upperWords[ind];
-    } else if (lowerWords.includes(str[i])){
+    } else if (lowerWords.includes(str[i])) {
       const ind = +lowerWords.indexOf(str[i]) + 13;
       res += lowerWords[ind];
     } else {

@@ -225,9 +225,9 @@ function roundToPowerOfTen(num, pow) {
 function isPrime(n) {
   // throw new Error('Not implemented');
   let count = 0;
-  for (let i = 1; i < n; i++) {
-    if (n % i === 0){
-      count++;
+  for (let i = 1; i < n; i += 1) {
+    if (n % i === 0) {
+      count += 1;
     }
   }
   return count === 1;
