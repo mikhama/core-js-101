@@ -134,8 +134,11 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  // throw new Error('Not implemented');
+  const x = +rect1.top + +rect1.height >= +rect2.top;
+  const y = rect1.left + rect1.width >= rect2.left;
+  return x && y;
 }
 
 
@@ -165,19 +168,13 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
-  // const rad = circle.radius;
-  // const { x } = circle.center;
-  // const { y } = circle.center;
-  // const xx = point.x;
-  // const yy = point.y;
-  // const gipY = (y + rad) ** 2;
-  // const gipX = (x + rad) ** 2;
-  // const pointXY = xx ** 2 + yy ** 2;
-  // return gipX > pointXY && gipY > pointXY;
+function isInsideCircle(circle, point) {
+  // throw new Error('Not implemented');
+  const xx = Math.abs(+circle.center.x - +point.x);
+  const yy = Math.abs(+circle.center.y - +point.y);
+  return circle.radius > Math.sqrt(xx ** 2 + yy ** 2);
 }
-// console.log(isInsideCircle({"center":{"x":5,"y":5},"radius":6},{"x":5,"y":10.99}));
+
 /**
  * Returns the first non repeated char in the specified strings otherwise returns null.
  *
@@ -294,10 +291,24 @@ function reverseInteger(num) {
  *   5436 4687 8901 6589 => false
  *   4916 1234 5678 9012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-}
+function isCreditCardNumber(ccn) {
+  // throw new Error('Not implemented');
+  let nCheck = 0;
+  let bEven = false;
 
+  const numbers = ccn.toString().split('').reverse();
+  numbers.forEach((item) => {
+    let num = +item;
+    if (bEven) {
+      num *= 2;
+      if (num > 9) num -= 9;
+    }
+    nCheck += num;
+    bEven = !bEven;
+  });
+  return (nCheck % 10) === 0;
+}
+// console.log(isCreditCardNumber(4916123456789012));
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
@@ -382,24 +393,7 @@ function isBracketsBalanced(str) {
  */
 function toNaryString(num, n) {
   // throw new Error('Not implemented');
-  if (n === 2) {
-    return num.toString(2);
-  } if (n === 3) {
-    return num.toString(3);
-  } if (n === 4) {
-    return num.toString(4);
-  } if (n === 5) {
-    return num.toString(5);
-  } if (n === 6) {
-    return num.toString(6);
-  } if (n === 7) {
-    return num.toString(7);
-  } if (n === 8) {
-    return num.toString(8);
-  } if (n === 9) {
-    return num.toString(9);
-  }
-  return num.toString(10);
+  return num.toString(n);
 }
 
 /**
@@ -414,10 +408,18 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  // throw new Error('Not implemented');
+  let checker = pathes[0];
+  for (let i = 1; i < pathes.length; i += 1) {
+    for (let j = 0; j < checker.length; j += 1) {
+      if (checker[j] !== pathes[i][j]) {
+        checker = checker.substring(0, j);
+      }
+    }
+  }
+  return checker.substring(0, checker.lastIndexOf('/') + 1);
 }
-
 
 /**
  * Returns the product of two specified matrixes.
@@ -437,10 +439,22 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  // throw new Error('Not implemented');
+  const res = [[], [], []];
+  for (let i = 0; i < m1.length; i += 1) {
+    for (let j = 0; j < m2.length; j += 1) {
+      res[i][j] = 0;
+      for (let k = 0; k < m1[i].length; k += 1) {
+        res[i][j] += m1[i][k] * m2[k][j];
+      }
+      if (m2[i].length === 1) {
+        return res.filter((item) => item.length !== 0);
+      }
+    }
+  }
+  return res;
 }
-
 
 /**
  * Returns the evaluation of the specified tic-tac-toe position.
