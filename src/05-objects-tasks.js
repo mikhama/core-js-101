@@ -20,6 +20,7 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
+// eslint-disable-next-line max-classes-per-file
 class Rectangle {
   // throw new Error('Not implemented');
   constructor(width, height) {
@@ -120,37 +121,108 @@ function fromJSON(proto, json) {
  *
  *  For more examples see unit tests.
  */
+class SetCssSelector {
+  constructor() {
+    this.selector = '';
+    this.elementRepeat = false;
+    this.idRepeat = false;
+    this.classNameRepeat = false;
+    this.attrRepeat = false;
+    this.pseudoClassRepeat = false;
+    this.pseudoElementRepeat = false;
+    this.order = 0;
+    this.repeatError = 'Element, id and pseudo-element should not occur more then one time inside the selector';
+    this.positionEror = 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element';
+  }
+
+  element(value) {
+    if (this.elementRepeat) throw new Error(this.repeatError);
+    this.elementRepeat = true;
+    if (this.order > 1) throw new Error(this.positionEror);
+    this.order = 1;
+    this.selector += `${value}`;
+    return this;
+  }
+
+  id(value) {
+    if (this.idRepeat) throw new Error(this.repeatError);
+    this.idRepeat = true;
+    if (this.order > 2) throw new Error(this.positionEror);
+    this.order = 2;
+    this.selector += `#${value}`;
+    return this;
+  }
+
+  class(value) {
+    if (this.order > 3) throw new Error(this.positionEror);
+    this.order = 3;
+    this.selector += `.${value}`;
+    return this;
+  }
+
+  attr(value) {
+    if (this.order > 4) throw new Error(this.positionEror);
+    this.order = 4;
+    this.selector += `[${value}]`;
+    return this;
+  }
+
+  pseudoClass(value) {
+    if (this.order > 5) throw new Error(this.positionEror);
+    this.order = 5;
+    this.selector += `:${value}`;
+    return this;
+  }
+
+  pseudoElement(value) {
+    if (this.pseudoElementRepeat) throw new Error(this.repeatError);
+    this.pseudoElementRepeat = true;
+    if (this.order > 6) throw new Error(this.positionEror);
+    this.order = 6;
+    this.selector += `::${value}`;
+    return this;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  combine(selector1, combination, selector2) {
+    this.selector += `${selector1.stringify()} ${combination} ${selector2.stringify()}`;
+    return this;
+  }
+
+  stringify() {
+    return this.selector;
+  }
+}
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    return new SetCssSelector().element(value);
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    return new SetCssSelector().id(value);
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    return new SetCssSelector().class(value);
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    return new SetCssSelector().attr(value);
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    return new SetCssSelector().pseudoClass(value);
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    return new SetCssSelector().pseudoElement(value);
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    return new SetCssSelector().combine(selector1, combinator, selector2);
   },
 };
-
 
 module.exports = {
   Rectangle,
