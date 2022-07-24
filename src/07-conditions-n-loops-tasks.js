@@ -49,8 +49,8 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-  let factSum = 0;
-  for (let i = 1; i <= n; i + 1) {
+  let factSum = 1;
+  for (let i = 1; i <= n; i += 1) {
     factSum *= i;
   }
   return factSum;
@@ -70,7 +70,7 @@ function getFactorial(n) {
  */
 function getSumBetweenNumbers(n1, n2) {
   let sum = 0;
-  for (let i = n1; i <= n2; i + 1) {
+  for (let i = n1; i <= n2; i += 1) {
     sum += i;
   }
   return sum;
@@ -176,9 +176,9 @@ function findFirstSingleChar(str) {
   let i;
   let j;
   let isUnique;
-  for (i = 0; i < str.length; i + 1) {
+  for (i = 0; i < str.length; i += 1) {
     isUnique = true;
-    for (j = 0; j < str.length; j + 1) {
+    for (j = 0; j < str.length; j += 1) {
       if (str[i] === str[j] && i !== j) {
         isUnique = false;
         break;
@@ -229,8 +229,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -245,8 +245,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return num.toString().split('').reverse().join('');
 }
 
 /**
