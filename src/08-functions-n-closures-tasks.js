@@ -24,7 +24,7 @@
  *
  */
 function getComposition(f, g) {
-  return function (x) {
+  return function e(x) {
     return f(g(x));
   };
 }
@@ -47,7 +47,7 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (x) {
+  return function e(x) {
     return x ** exponent;
   };
 }
@@ -140,7 +140,7 @@ function retry(/* func, attempts */) {
  *
  */
 function logger(func, logFunc) {
-  return function (...x) {
+  return function e(...x) {
     logFunc(`${func.name}(${JSON.stringify(x).slice(1, -1)}) starts`);
     const result = func(...x);
     logFunc(`${func.name}(${JSON.stringify(x).slice(1, -1)}) ends`);
@@ -163,11 +163,11 @@ function logger(func, logFunc) {
  */
 function partialUsingArguments(fn, ...args1) {
   if ([...args1].length === 4) {
-    return function () {
+    return function e() {
       return fn(...args1);
     };
   }
-  return function (...args2) {
+  return function x(...args2) {
     const args = [...args1, ...args2];
     if (args.length === 4) {
       return fn(...args);
@@ -196,7 +196,7 @@ function partialUsingArguments(fn, ...args1) {
  */
 function getIdGeneratorFunction(startFrom) {
   let count = 0;
-  return function () {
+  return function e() {
     let result = 0;
     if (count === 0) {
       result = startFrom + count;
