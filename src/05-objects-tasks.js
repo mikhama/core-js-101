@@ -118,51 +118,60 @@ const cssSelectorBuilder = {
   result: '',
   temp: '',
 
-  element(value) {
-    this.result += `${value}`;
-    return this;
+  element(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `${value}`;
+    // return this;
   },
 
-  id(value) {
-    this.result += `#${value}`;
-    return this;
+  id(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `#${value}`;
+    // return this;
   },
 
-  class(value) {
-    this.result += `.${value}`;
-    return this;
+  class(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `.${value}`;
+    // return this;
   },
 
-  attr(value) {
-    this.result += `[${value}]`;
-    return this;
+  attr(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `[${value}]`;
+    // return this;
   },
 
-  pseudoClass(value) {
-    this.result += `:${value}`;
-    return this;
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `:${value}`;
+    // return this;
   },
 
-  pseudoElement(value) {
-    this.result += `::${value}`;
-    return this;
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
+    // this.result += `::${value}`;
+    // return this;
   },
 
-  combine(selector1, combinator, selector2) {
-    this.flag = true;
-    this.result += `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
-    console.log(this.result);
-    return this;
+  combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
+    // this.flag = true;
+    // this.result += `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+    // console.log(this.result);
+    // return this;
   },
 
   stringify() {
-    this.clearState();
-    return this.temp;
+    throw new Error('Not implemented');
+    // this.clearState();
+    // return this.temp;
   },
 
   clearState() {
-    this.temp = this.result;
-    this.result = '';
+    throw new Error('Not implemented');
+    // this.temp = this.result;
+    // this.result = '';
   },
 };
 
