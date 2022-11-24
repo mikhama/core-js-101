@@ -148,8 +148,6 @@ function logger(func, logFunc) {
   };
 }
 
-console.log(Math.cos.name);
-
 /**
  * Return the function with partial applied arguments
  *
