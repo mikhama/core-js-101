@@ -27,8 +27,17 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+    // eslint-disable-next-line no-else-return
+  } else if (num % 3 === 0) {
+    return 'Fizz';
+  } else if (num % 5 === 0) {
+    return 'Buzz';
+  } else {
+    return num;
+  }
 }
 
 
@@ -43,8 +52,13 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let mult = 1;
+  for (let index = 1; index <= n; index += 1) {
+    // eslint-disable-next-line operator-assignment
+    mult = mult * index;
+  }
+  return mult;
 }
 
 
@@ -60,8 +74,13 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let mult = 0;
+  for (let index = n1; index <= n2; index += 1) {
+    // eslint-disable-next-line operator-assignment
+    mult += index;
+  }
+  return mult;
 }
 
 
@@ -80,8 +99,14 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) {
+    return false;
+  }
+  if (a + b > c && a + c > b && c + b > a) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -117,8 +142,12 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const isR = rect2.left > rect1.left + rect1.width;
+  const isL = rect2.left + rect2.width < rect1.left;
+  const isB = rect2.top > rect1.top + rect1.height;
+  const isT = rect2.top + rect2.height < rect1.top;
+  return !(isB || isT || isR || isL);
 }
 
 
@@ -164,8 +193,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const lett = str[i];
+    if (str.split(lett).length === 2) {
+      return lett;
+    }
+  }
+  return null;
 }
 
 
@@ -191,8 +226,10 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const brackOne = isStartIncluded ? '[' : '(';
+  const brackTwo = isEndIncluded ? ']' : ')';
+  return `${brackOne + Math.min(a, b)}, ${Math.max(a, b)}${brackTwo}`;
 }
 
 
@@ -208,8 +245,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -225,8 +262,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return Number(num.toString().split('').reverse().join(''));
 }
 
 
@@ -268,8 +305,10 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const arr = num.toString().split('').map((el) => Number(el));
+  const sum = arr.reduce((acc, val) => acc + val);
+  return sum > 9 ? getDigitalRoot(sum) : sum;
 }
 
 
@@ -319,8 +358,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
