@@ -48,8 +48,8 @@ function generateOdds(/* len */) {
  * @return {array}
  *
  * @example
- *    ['Ace', 10, true]  => ['Ace', 10, true,   'Ace', 10, true]
- *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5,   0, 1, 2, 3, 4, 5]
+ *    ['Ace', 10, true]  => ['Ace', 10, true, 'Ace', 10, true]
+ *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    [] => []
  */
 function doubleArray(/* arr */) {
