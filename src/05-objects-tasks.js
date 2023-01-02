@@ -20,8 +20,10 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.getArea = () => this.width * this.height;
 }
 
 
@@ -35,8 +37,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -51,8 +53,8 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  return new proto.constructor(...Object.values(JSON.parse(json)));
 }
 
 
@@ -109,35 +111,116 @@ function fromJSON(/* proto, json */) {
  *
  *  For more examples see unit tests.
  */
+class CssSelectors {
+  constructor() {
+    this.selector = '';
+    this.selectorChunksToCheck = {
+      element: 0,
+      id: 0,
+      pseudoElement: 0,
+    };
+    this.selectorChunksOrder = 0;
+    this.errors = {
+      onlyOneTime: 'Element, id and pseudo-element should not occur more then one time inside the selector',
+      selectorsOrder: 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element',
+    };
+  }
+
+  checkSelectorOnlyOneTimeOccur(selector) {
+    const { onlyOneTime } = this.errors;
+    if (this.selectorChunksToCheck[selector]) throw new Error(onlyOneTime);
+  }
+
+  checkSelectorsOrder(currentSelectorDefaultOrder) {
+    const { selectorChunksOrder } = this;
+    const { selectorsOrder } = this.errors;
+    if (selectorChunksOrder > currentSelectorDefaultOrder) throw new Error(selectorsOrder);
+  }
+
+  element(value) {
+    const currentSelectorDefaultOrder = 1;
+
+    this.checkSelectorOnlyOneTimeOccur('element');
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += value;
+    this.selectorChunksToCheck.element = 1;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  id(value) {
+    const currentSelectorDefaultOrder = 2;
+
+    this.checkSelectorOnlyOneTimeOccur('id');
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += `#${value}`;
+    this.selectorChunksToCheck.id = 1;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  class(value) {
+    const currentSelectorDefaultOrder = 3;
+
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += `.${value}`;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  attr(value) {
+    const currentSelectorDefaultOrder = 4;
+
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += `[${value}]`;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  pseudoClass(value) {
+    const currentSelectorDefaultOrder = 5;
+
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += `:${value}`;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  pseudoElement(value) {
+    const currentSelectorDefaultOrder = 6;
+
+    this.checkSelectorOnlyOneTimeOccur('pseudoElement');
+    this.checkSelectorsOrder(currentSelectorDefaultOrder);
+
+    this.selector += `::${value}`;
+    this.selectorChunksToCheck.pseudoElement = 1;
+    this.selectorChunksOrder = currentSelectorDefaultOrder;
+    return this;
+  }
+
+  combine(s1, combinator, s2) {
+    this.selector = `${s1.selector} ${combinator} ${s2.selector}`;
+    return this;
+  }
+
+  stringify() {
+    return this.selector;
+  }
+}
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  id(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  class(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  attr(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
-  },
-
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
-  },
+  element: (value) => new CssSelectors().element(value),
+  id: (value) => new CssSelectors().id(value),
+  class: (value) => new CssSelectors().class(value),
+  attr: (value) => new CssSelectors().attr(value),
+  pseudoClass: (value) => new CssSelectors().pseudoClass(value),
+  pseudoElement: (value) => new CssSelectors().pseudoElement(value),
+  combine: (s1, combinator, s2) => new CssSelectors().combine(s1, combinator, s2),
 };
 
 
