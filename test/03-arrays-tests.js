@@ -764,8 +764,8 @@ describe('03-arrays-tasks', () => {
     ].forEach((data) => {
       const actual = tasks.group(data.arr, data.keySelector, data.valueSelector);
       assert.deepEqual(
-        Array.from(data.expected),
         Array.from(actual),
+        Array.from(data.expected),
       );
     });
   });
