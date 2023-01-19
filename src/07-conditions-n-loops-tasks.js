@@ -155,10 +155,13 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  if ((((point.x - circle.center.x) ** 2
+       + ((point.y - circle.center.y) ** 2))) < circle.radius ** 2) {
+    return true;
+  }
+  return false;
 }
-
 
 /**
  * Returns the first non repeated char in the specified strings otherwise returns null.
@@ -221,8 +224,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -238,8 +241,13 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return (parseFloat(num
+    .toString()
+    .split('')
+    .reverse()
+    .join('')) * Math.sign(num)
+  );
 }
 
 
@@ -281,8 +289,20 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const digits = num.toString().split('').map(Number);
+  let sum = 0;
+  for (let i = 0; i < digits.length; i += 1) {
+    sum += digits[i];
+  }
+  const sumString = sum.toString();
+  if (sumString.length > 1) {
+    const sumDigits = sumString.split('').map(Number);
+    const firstSumDigit = sumDigits.slice(0);
+    const lastSumDigit = sumDigits.slice(-1);
+    return firstSumDigit[0] + lastSumDigit[0];
+  }
+  return sum;
 }
 
 
@@ -310,7 +330,6 @@ function getDigitalRoot(/* num */) {
 function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
