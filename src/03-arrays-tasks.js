@@ -353,8 +353,8 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  return arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 }
 
 /**
@@ -532,10 +532,13 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const map = new Map();
+  array.map((v) => map.set(keySelector(v),
+    (map.get(keySelector(v)) === undefined ? [] : map.get(keySelector(v)))
+      .concat([valueSelector(v)])));
+  return map;
 }
-
 
 /**
  * Projects each element of the specified array to a sequence
@@ -550,8 +553,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
@@ -589,8 +592,13 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const middle = [];
+  if (arr.length % 2 !== 0) {
+    middle.push(arr[Math.floor(arr.length / 2)]);
+  }
+  return []
+    .concat(arr.slice(Math.ceil(arr.length / 2)), middle, arr.slice(0, Math.floor(arr.length / 2)));
 }
 
 
