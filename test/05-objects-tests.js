@@ -236,6 +236,7 @@ describe('06-objects-tasks', () => {
       () => builder.element('table').element('div'),
       () => builder.id('id1').id('id2'),
       () => builder.pseudoElement('after').pseudoElement('before'),
+      () => builder.element('div').id('id1').id('id2'),
     ].forEach((fn) => {
       assert.throws(
         fn,
