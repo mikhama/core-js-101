@@ -109,8 +109,16 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  let angle = Math.atan2(x1, y1) - Math.atan2(x2, y2);
+  if (angle < 0) {
+    angle += 2 * Math.PI;
+  }
+  if (angle > Math.PI) {
+    angle -= 2 * Math.PI;
+  }
+
+  return angle;
 }
 
 /**
@@ -158,8 +166,8 @@ function parseNumberFromString(value) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a * a + b * b + c * c);
 }
 
 
@@ -180,8 +188,11 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  if (pow === 0) {
+    return num;
+  }
+  return Math.round(num / (10 ** pow)) * (10 ** pow);
 }
 
 /**
@@ -202,12 +213,19 @@ function roundToPowerOfTen(/* num, pow */) {
  *   17 => true
  */
 function isPrime(n) {
-  for (let i = 2; i < n; i + 1) {
-    if (n % i === 0) {
+  if (n === 2 || n === 3) {
+    return true;
+  }
+  if (n <= 1 || n % 2 === 0 || n % 3 === 0) {
+    return false;
+  }
+
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) {
       return false;
     }
   }
-  return n > 1;
+  return true;
 }
 
 /**
@@ -225,8 +243,8 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return Number(value) || def;
 }
 
 module.exports = {
