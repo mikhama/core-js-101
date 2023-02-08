@@ -35,8 +35,8 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array.from({ length: len }, (v, i) => 2 * i + 1);
 }
 
 
@@ -586,8 +586,24 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length === 0 || arr.length === 1) {
+    return arr;
+  }
+  const middle = Math.floor(arr.length / 2);
+  let head = [];
+  let tail = [];
+  if (arr.length % 2 !== 0) {
+    head = arr.slice(0, middle);
+    tail = arr.slice(middle + 1, arr.length);
+    return [...tail, arr[middle], ...head];
+  }
+  if (arr.length % 2 === 0 && arr.length > 1) {
+    head = arr.slice(0, arr.length / 2);
+    tail = arr.slice(arr.length / 2);
+    return [...tail, ...head];
+  }
+  return arr;
 }
 
 
