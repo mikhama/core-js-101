@@ -28,7 +28,7 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
+function willYouMarryMe(/* isPositiveAnswer */) { // eslint-
   throw new Error('Not implemented');
 }
 
