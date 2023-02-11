@@ -225,16 +225,27 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  // const abcNorm = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  // const abcRor13 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+function encodeToRot13(str) {
+  const abcNorm = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const abcRor13 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   // let strEncode = '';
   // for (const i of str) {
   //   const index = abcNorm.indexOf(i);
   //   strEncode += index === -1 ? i : abcRor13[index];
   // }
   // return strEncode;
-  throw new Error('Not implemented');
+
+  let strEncode = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const index = abcNorm.indexOf(str[i]);
+    if (index === -1) {
+      strEncode += str[i];
+    } else {
+      strEncode += abcRor13[index];
+    }
+  }
+  return strEncode;
+  // throw new Error('Not implemented');
 }
 
 /**
