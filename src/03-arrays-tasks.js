@@ -100,8 +100,8 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  return arr.filter(Boolean);
 }
 
 /**
@@ -199,8 +199,8 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr.map((x) => x.toString()).join('\n');
 }
 
 /**
@@ -233,14 +233,19 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
+function getMovingSum(arr) {
   // const result = [];
   // result.push(arr[0]);
   // for (let i = 1; i < arr.length; i += 1) {
   //   result.push(arr[i - 1] + arr[i]);
   // }
-  // return result;
-  throw new Error('Not implemented');
+
+  return arr.map((element, index) => {
+    if (index === 0) {
+      return element;
+    }
+    return arr[index - 1] + arr[index];
+  });
 }
 
 /**
