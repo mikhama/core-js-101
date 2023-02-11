@@ -216,6 +216,7 @@ function toCsvText(arr) {
  */
 function toArrayOfSquares(arr) {
   return arr.map((el) => el ** 2);
+  
 }
 
 
@@ -240,12 +241,16 @@ function getMovingSum(arr) {
   //   result.push(arr[i - 1] + arr[i]);
   // }
 
-  return arr.map((element, index) => {
-    if (index === 0) {
-      return element;
-    }
-    return arr[index - 1] + arr[index];
-  });
+  return arr.forEach((el, index) => {
+
+  })
+
+  // return arr.map((element, index) => {
+  //   if (index === 0) {
+  //     return element;
+  //   }
+  //   return arr[index - 1] + arr[index];
+  // });
 }
 
 /**
