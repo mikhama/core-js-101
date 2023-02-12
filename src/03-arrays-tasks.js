@@ -234,18 +234,13 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  // const result = [];
-  // result.push(arr[0]);
-  // for (let i = 1; i < arr.length; i += 1) {
-  //   result.push(arr[i - 1] + arr[i]);
-  // }
-
-  return arr.map((element, index) => {
-    if (index === 0) {
-      return element;
-    }
-    return arr[index - 1] + arr[index];
-  });
+  let sum = 0;
+  return arr.map((elem) => {
+    // eslint-disable-next-line no-param-reassign
+    elem += sum;
+    sum = elem;
+    return elem;
+  }, sum);
 }
 
 /**
@@ -278,8 +273,9 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  arr.map((x, ind) => { arr.splice(ind, 1, Array(ind + 1).fill(x)); return arr; });
+  return arr.flat();
 }
 
 /**
@@ -331,26 +327,26 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  // const numDict = {
-  //   'zero': 0,
-  //   'one': 1,
-  //   'two': 2,
-  //   'three': 3,
-  //   'four': 4,
-  //   'five': 5,
-  //   'six': 6,
-  //   'seven': 7,
-  //   'eight': 8,
-  //   'nine': 9,
-  // };
-  // return arr.sort((a, b) => {
-  //   if (numDict[a] < numDict[b]) {
-  //     return -1;
-  //   }
-  //   return 1;
-  // });
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const numDict = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+  return arr.sort((a, b) => {
+    if (numDict[a] < numDict[b]) {
+      return -1;
+    }
+    return 1;
+  });
+  // throw new Error('Not implemented');
 }
 
 /**
