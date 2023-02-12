@@ -579,10 +579,11 @@ function getElementByIndexes(/* arr, indexes */) {
  * @return {array}
  *
  * @example
+ *
  *   [ 1, 2, 3, 4, 5 ]   =>  [ 4, 5, 3, 1, 2 ]
  *    \----/   \----/
  *     head     tail
- *
+ *     head     tail
  *   [ 1, 2 ]  => [ 2, 1 ]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
