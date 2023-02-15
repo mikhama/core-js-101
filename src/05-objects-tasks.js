@@ -20,8 +20,10 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.height = height;
+  this.width = width;
+  this.getArea = function getArea() { return this.height * this.width; };
 }
 
 
@@ -35,8 +37,9 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
+//  throw new Error('Not implemented');
 }
 
 
@@ -51,8 +54,10 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const obj = JSON.parse(json);
+  const values = Object.values(obj);
+  return new proto.constructor(...values);
 }
 
 
@@ -110,36 +115,108 @@ function fromJSON(/* proto, json */) {
  *  For more examples see unit tests.
  */
 
+// const cssSelectorBuilder = {
+//   element(value) {
+//     return value.stringify();
+//   }
+
+//   id(/* value */) {
+//     throw new Error('Not implemented');
+//   },
+
+//   class(/* value */) {
+//     throw new Error('Not implemented');
+//   },
+
+//   attr(/* value */) {
+//     throw new Error('Not implemented');
+//   },
+
+//   pseudoClass(/* value */) {
+//     throw new Error('Not implemented');
+//   },
+
+//   pseudoElement(/* value */) {
+//     throw new Error('Not implemented');
+//   },
+
+//   combine(/* selector1, combinator, selector2 */) {
+//     throw new Error('Not implemented');
+//   },
+// };
+
+
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  result: '',
+  order: 0,
+
+  check(order) {
+    if (this.order > order) {
+      throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
+    }
+    if (order === this.order && (order === 1 || order === 2 || order === 6)) {
+      throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+    }
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    this.check(1);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = this.result + value;
+    obj.order = 1;
+    return obj;
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    this.check(2);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${this.result}#${value}`;
+    obj.order = 2;
+    return obj;
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    this.check(3);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${this.result}.${value}`;
+    obj.order = 3;
+    return obj;
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    this.check(4);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${this.result}[${value}]`;
+    obj.order = 4;
+    return obj;
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    this.check(5);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${this.result}:${value}`;
+    obj.order = 5;
+    return obj;
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    this.check(6);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${this.result}::${value}`;
+    obj.order = 6;
+    return obj;
+  },
+
+  combine(selector1, combinator, selector2) {
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${selector1.result} ${combinator} ${selector2.result}`;
+    return obj;
+  },
+
+  stringify() {
+    return this.result;
   },
 };
-
 
 module.exports = {
   Rectangle,
