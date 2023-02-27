@@ -289,27 +289,27 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-  // const ccnString = String(ccn).split('');
+function isCreditCardNumber(ccn) {
+  // throw new Error('Not implemented');
+  const ccnString = String(ccn).split('');
 
-  // const isEven = ccnString.length % 2 === 0;
+  const isEven = ccnString.length % 2 === 0;
 
-  // const ccnNumbers = ccnString.map((number, index) => {
-  //   const digit = Number(number);
+  const ccnNumbers = ccnString.map((number, index) => {
+    const digit = Number(number);
 
-  //   if ((isEven && index % 2 === 0) || (!isEven && index % 2 !== 0)) {
-  //     const multyDigit = digit * 2;
+    if ((isEven && index % 2 === 0) || (!isEven && index % 2 !== 0)) {
+      const multyDigit = digit * 2;
 
-  //     return multyDigit > 9 ? multyDigit - 9 : multyDigit;
-  //   }
+      return multyDigit > 9 ? multyDigit - 9 : multyDigit;
+    }
 
-  //   return digit;
-  // });
+    return digit;
+  });
 
-  // const sum = ccnNumbers.reduce((acc, item) => acc + item, 0);
+  const sum = ccnNumbers.reduce((acc, item) => acc + item, 0);
 
-  // return sum % 10 === 0;
+  return sum % 10 === 0;
 }
 
 /**
@@ -357,42 +357,42 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  // throw new Error('Not implemented');
 
-  // const bracketPairsReverse = {
-  //   ']': '[',
-  //   '}': '{',
-  //   ')': '(',
-  //   '>': '<',
-  // };
+  const bracketPairsReverse = {
+    ']': '[',
+    '}': '{',
+    ')': '(',
+    '>': '<',
+  };
 
-  // const bracketsArray = [];
+  const bracketsArray = [];
 
-  // for (let i = 0; i < str.length; i += 1) {
-  //   const bracket = str[i];
+  for (let i = 0; i < str.length; i += 1) {
+    const bracket = str[i];
 
-  //   switch (bracket) {
-  //     case '[':
-  //     case '{':
-  //     case '(':
-  //     case '<':
-  //       bracketsArray.push(bracket);
-  //       break;
+    switch (bracket) {
+      case '[':
+      case '{':
+      case '(':
+      case '<':
+        bracketsArray.push(bracket);
+        break;
 
-  //     case ']':
-  //     case '}':
-  //     case ')':
-  //     case '>':
-  //       if (bracketsArray.pop() !== bracketPairsReverse[bracket]) return false;
+      case ']':
+      case '}':
+      case ')':
+      case '>':
+        if (bracketsArray.pop() !== bracketPairsReverse[bracket]) return false;
 
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
+        break;
+      default:
+        break;
+    }
+  }
 
-  // return !bracketsArray.length;
+  return !bracketsArray.length;
 }
 
 
@@ -530,16 +530,8 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(position) {
-  for (let i = 0; i < 3; i += 1) {
-    for(let j = 0; j < 3; j += 1) {
-      if(position[j][i]) {
-        
-      }
-    }
-
-  }
-  // throw new Error('Not implemented');
+function evaluateTicTacToePosition(/* position */) {
+  throw new Error('Not implemented');
 }
 
 
