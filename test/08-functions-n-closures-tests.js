@@ -2,7 +2,7 @@ const assert = require('assert');
 const tasks = require('../src/08-functions-n-closures-tasks');
 it.optional = require('../extensions/it-optional');
 
-describe('09-functions-n-closures-tasks', () => {
+describe('08-functions-n-closures-tasks', () => {
   it.optional('getComposition should return the composition of two functions', () => {
     [
       {

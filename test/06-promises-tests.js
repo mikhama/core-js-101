@@ -2,7 +2,7 @@ const assert = require('assert');
 const tasks = require('../src/06-promises-tasks');
 it.optional = require('../extensions/it-optional');
 
-describe('07-promises-tasks', () => {
+describe('06-promises-tasks', () => {
   it.optional('function willYouMarryMe should return correct Promise object', (done) => {
     const answer1 = tasks.willYouMarryMe(true);
     const answer2 = tasks.willYouMarryMe(false);
