@@ -2,7 +2,7 @@ const assert = require('assert');
 const tasks = require('../src/07-conditions-n-loops-tasks');
 it.optional = require('../extensions/it-optional');
 
-describe('08-conditions-n-loops-tasks', () => {
+describe('07-conditions-n-loops-tasks', () => {
   it.optional('getFizzBuzz should return the output value according specification', () => {
     [
       1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19, 22, 23, 26, 28, 29, 31, 32, 34,
