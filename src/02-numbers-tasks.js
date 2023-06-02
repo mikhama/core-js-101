@@ -52,7 +52,11 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  const bigA = global.BigInt(value1);
+  const bigB = global.BigInt(value2);
+  const sum = bigA + bigB;
+  const average = sum / global.BigInt(2);
+  return average.toString();
 }
 
 /**
@@ -110,7 +114,10 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return Math.atan2(x1 - x2, y1 - y2);
+  const dotProduct = x1 * x2 + y1 * y2;
+  const magnitudeProduct = Math.sqrt(x1 * x1 + y1 * y1) * Math.sqrt(x2 * x2 + y2 * y2);
+  const angle = Math.acos(dotProduct / magnitudeProduct);
+  return angle;
 }
 
 /**
@@ -181,10 +188,11 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  const subN = 10 ** pow;
-  const roundedN = Math.round(num * subN) / subN;
-  return roundedN;
+  const factor = 10 ** pow;
+  const roundedNum = Math.round(num / factor) * factor;
+  return roundedNum;
 }
+
 
 /**
  * Returns true is the number is prime; otherwise false.
