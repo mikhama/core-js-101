@@ -20,8 +20,12 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.getArea = function getArea() {
+    return this.width * this.height;
+  };
 }
 
 
@@ -35,8 +39,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -51,8 +55,10 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const obj = Object.create(proto);
+  Object.assign(obj, JSON.parse(json));
+  return obj;
 }
 
 
@@ -111,32 +117,98 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  selectorString: '',
+  elementCount: 0,
+  idCount: 0,
+  pseudoElementCount: 0,
+
+  element(value) {
+    this.checkDuplicate('element');
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}${value}`;
+    newSelector.elementCount = this.elementCount + 1;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    this.checkDuplicate('id');
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}#${value}`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount + 1;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}.${value}`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}[${value}]`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}:${value}`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    this.checkDuplicate('element');
+    this.checkDuplicate('id');
+    this.checkDuplicate('pseudoElement');
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${this.selectorString}::${value}`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount + 1;
+    return newSelector;
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    this.checkDuplicate('element');
+    this.checkDuplicate('id');
+    this.checkDuplicate('pseudoElement');
+    const newSelector = Object.create(cssSelectorBuilder);
+    newSelector.selectorString = `${selector1.selectorString} ${combinator} ${selector2.selectorString}`;
+    newSelector.elementCount = this.elementCount;
+    newSelector.idCount = this.idCount;
+    newSelector.pseudoElementCount = this.pseudoElementCount;
+    return newSelector;
+  },
+
+  toString() {
+    return this.selectorString;
+  },
+
+  stringify() {
+    return this.toString();
+  },
+
+  checkDuplicate(type) {
+    if (
+      (type === 'element' && this.elementCount > 0)
+      || (type === 'id' && this.idCount > 0)
+      || (type === 'pseudoElement' && this.pseudoElementCount > 0)
+    ) {
+      throw new Error('Element, id and pseudo-element should not occur more than one time inside the selector');
+    }
   },
 };
 
