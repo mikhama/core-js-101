@@ -117,98 +117,32 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-  selectorString: '',
-  elementCount: 0,
-  idCount: 0,
-  pseudoElementCount: 0,
-
-  element(value) {
-    this.checkDuplicate('element');
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}${value}`;
-    newSelector.elementCount = this.elementCount + 1;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
+  element(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  id(value) {
-    this.checkDuplicate('id');
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}#${value}`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount + 1;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
+  id(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  class(value) {
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}.${value}`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
+  class(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  attr(value) {
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}[${value}]`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
+  attr(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoClass(value) {
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}:${value}`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoElement(value) {
-    this.checkDuplicate('element');
-    this.checkDuplicate('id');
-    this.checkDuplicate('pseudoElement');
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${this.selectorString}::${value}`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount + 1;
-    return newSelector;
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  combine(selector1, combinator, selector2) {
-    this.checkDuplicate('element');
-    this.checkDuplicate('id');
-    this.checkDuplicate('pseudoElement');
-    const newSelector = Object.create(cssSelectorBuilder);
-    newSelector.selectorString = `${selector1.selectorString} ${combinator} ${selector2.selectorString}`;
-    newSelector.elementCount = this.elementCount;
-    newSelector.idCount = this.idCount;
-    newSelector.pseudoElementCount = this.pseudoElementCount;
-    return newSelector;
-  },
-
-  toString() {
-    return this.selectorString;
-  },
-
-  stringify() {
-    return this.toString();
-  },
-
-  checkDuplicate(type) {
-    if (
-      (type === 'element' && this.elementCount > 0)
-      || (type === 'id' && this.idCount > 0)
-      || (type === 'pseudoElement' && this.pseudoElementCount > 0)
-    ) {
-      throw new Error('Element, id and pseudo-element should not occur more than one time inside the selector');
-    }
+  combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
   },
 };
 
