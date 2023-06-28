@@ -124,15 +124,15 @@ class CSS {
     } else {
       this.info = info;
     }
-    this.Id = false;
-    this.Element = false;
-    this.PseudoElement = false;
-    this.Class = false;
-    this.allowed = ['el', 'id', 'cl', 'at', 'pc', 'pe'];
+    this.ID = false;
+    this.EL = false;
+    this.PE = false;
+    this.CL = false;
+    this.AL = ['el', 'id', 'cl', 'at', 'pc', 'pe'];
   }
 
   element(value) {
-    if (this.Element) {
+    if (this.EL) {
       throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
     }
 
@@ -141,13 +141,13 @@ class CSS {
     }
 
     this.delete('el');
-    this.Element = true;
+    this.EL = true;
     this.info = value;
     return this;
   }
 
   id(value) {
-    if (this.Id) {
+    if (this.ID) {
       throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
     }
     if (!this.ready('id')) {
@@ -155,7 +155,7 @@ class CSS {
     }
 
     this.delete('id');
-    this.Id = true;
+    this.ID = true;
     this.info += `#${value}`;
     return this;
   }
@@ -190,7 +190,7 @@ class CSS {
   }
 
   pseudoElement(value) {
-    if (this.PseudoElement) {
+    if (this.PE) {
       throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
     }
 
@@ -198,7 +198,7 @@ class CSS {
       throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
     this.delete('pe');
-    this.PseudoElement = true;
+    this.PE = true;
     this.info += `::${value}`;
     return this;
   }
@@ -208,11 +208,11 @@ class CSS {
   }
 
   delete(name) {
-    this.allowed.splice(0, this.allowed.indexOf(name), 1);
+    this.AL.splice(0, this.AL.indexOf(name), 1);
   }
 
   ready(name) {
-    return this.allowed.indexOf(name) > -1;
+    return this.AL.indexOf(name) > -1;
   }
 }
 
