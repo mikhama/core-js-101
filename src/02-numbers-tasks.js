@@ -224,6 +224,114 @@ function toNumber(/* value, def */) {
   throw new Error('Not implemented');
 }
 
+/**
+ * Returns the given number rounded to the nearest integer.
+ *
+ * @param {number} num
+ * @return {number}
+ *
+ * @example:
+ *   1.2  => 1
+ *   3.8  => 4
+ *   0.5  => 1
+ *   -0.5 => -1
+ */
+function roundToNearestInteger(/* num */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the cube of the given number.
+ *
+ * @param {number} num
+ * @return {number}
+ *
+ * @example:
+ *   3  => 27
+ *   -2 => -8
+ *   0  => 0
+ */
+function getCube(/* num */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the Fibonacci number located at the index position.
+ *
+ * @param {number} index
+ * @return {number}
+ *
+ * @example:
+ *   0  => 0
+ *   1  => 1
+ *   2  => 1
+ *   3  => 2
+ *   10 => 55
+ */
+function getFibonacciNumber(/* index */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the sum of all numbers from 1 to n.
+ *
+ * @param {number} n
+ * @return {number}
+ *
+ * @example:
+ *   5  => 15 // (1+2+3+4+5)
+ *   10 => 55 // (1+2+3+...+10)
+ *   1  => 1
+ */
+function getSumToN(/* n */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the sum of the digits of a given number.
+ *
+ * @param {number} num
+ * @return {number}
+ *
+ * @example:
+ *   123 => 6  // (1+2+3)
+ *   202 => 4  // (2+0+2)
+ *   5   => 5  // 5
+ */
+function getSumOfDigits(/* num */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns true if the given number is a power of two, false otherwise.
+ *
+ * @param {number} num
+ * @return {boolean}
+ *
+ * @example:
+ *   4   => true
+ *   16  => true
+ *   15  => false
+ */
+function isPowerOfTwo(/* num */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the sine of a number.
+ *
+ * @param {number} num
+ * @return {number}
+ *
+ * @example:
+ *   0 => 0
+ *   Math.PI / 2 => 1
+ */
+function getSine(/* num */) {
+  throw new Error('Not implemented');
+}
+
+
 module.exports = {
   getRectangleArea,
   getCircleCircumference,
@@ -237,4 +345,11 @@ module.exports = {
   roundToPowerOfTen,
   isPrime,
   toNumber,
+  roundToNearestInteger,
+  getCube,
+  getFibonacciNumber,
+  getSumToN,
+  getSumOfDigits,
+  isPowerOfTwo,
+  getSine,
 };
