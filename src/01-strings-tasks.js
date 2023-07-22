@@ -273,6 +273,103 @@ function getCardId(/* value */) {
   throw new Error('Not implemented');
 }
 
+/**
+ * Returns the count of the specified character in the given string.
+ *
+ * @param {string} str - The string in which to count the character
+ * @param {string} char - The character to count in the string
+ * @return {number} - The count of the specified character
+ *
+ * @example
+ *   'Hello, world!', 'o' => 2
+ */
+function countCharacter(/* str, char */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns true if the original string starts with the specified character(s), false otherwise.
+ *
+ * @param {string} str - The original string
+ * @param {string} startChars - The character(s) to check for at the start of the string
+ * @return {boolean} - True if the string starts with the specified character(s), false otherwise
+ *
+ * @example
+ *   'Hello, world!', 'Hel' => true
+ *   'Hello, world!', 'wor' => false
+ */
+function startsWith(/* str, startChars */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns a new string where the first character of the original string is capitalized.
+ *
+ * @param {string} str - The original string
+ * @return {string} - The string with the first character capitalized
+ *
+ * @example
+ *   'hello' => 'Hello'
+ */
+function capitalizeFirstCharacter(/* str */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns a new string where all occurrences of the specified target character(s)
+ * in the original string are replaced with the specified new character(s).
+ *
+ * @param {string} str - The original string
+ * @param {string} target - The character(s) to be replaced
+ * @param {string} replacement - The new character(s) to be inserted
+ * @return {string} - The string with replaced characters
+ *
+ * @example
+ *   'Hello, world!', 'o', 'a' => 'Hella, warld!'
+ */
+function replaceCharacters(/* str, target, replacement */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns an array of words from the given string.
+ *
+ * @param {string} str
+ * @return {array}
+ *
+ * @example
+ *   'I love JavaScript' => ['I', 'love', 'JavaScript']
+ */
+function stringToArray(/* str */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the longest word in the given sentence.
+ *
+ * @param {string} str
+ * @return {string}
+ *
+ * @example
+ *   'The quick brown fox jumped over the lazy dog' => 'jumped'
+ */
+function findLongestWord(/* str */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the given string in reverse order.
+ *
+ * @param {string} str - The original string
+ * @return {string} - The reversed string
+ *
+ * @example
+ *   'Hello, world!' => '!dlrow ,olleH'
+ */
+function reverseString(/* str */) {
+  throw new Error('Not implemented');
+}
+
 
 module.exports = {
   concatenateStrings,
@@ -290,4 +387,11 @@ module.exports = {
   encodeToRot13,
   isString,
   getCardId,
+  countCharacter,
+  startsWith,
+  capitalizeFirstCharacter,
+  replaceCharacters,
+  stringToArray,
+  findLongestWord,
+  reverseString,
 };
