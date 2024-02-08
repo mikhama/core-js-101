@@ -373,8 +373,8 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  return arr.filter((value) => value === item).length;
 }
 
 /**
@@ -419,9 +419,27 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  function sortFunction(a, b) {
+    if (a.country < b.country) {
+      return -1;
+    }
+    if (a.country > b.country) {
+      return 1;
+    }
+    if (a.city < b.city) {
+      return -1;
+    }
+    if (a.city > b.city) {
+      return 1;
+    }
+
+    return 0;
+  }
+
+  return arr.sort(sortFunction);
 }
+
 
 /**
  * Creates an identity matrix of the specified size
@@ -572,8 +590,8 @@ function swapHeadAndTail(arr) {
     const tail = arr.splice(0, L / 2);
     result = arr.concat(tail);
   } else {
-    const tail = arr.splice(0, Math.floor(L / 2));
-    const head = arr.splice(1, Math.floor(L / 2));
+    const tail = arr.splice(0, Math.trunc(L / 2));
+    const head = arr.splice(1, Math.trunc(L / 2));
     result = head.concat(arr).concat(tail);
   }
 

@@ -20,8 +20,16 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  const r = {
+    width,
+    height,
+    getArea() {
+      return this.width * this.height;
+    },
+  };
+
+  return r;
 }
 
 
@@ -35,8 +43,31 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  let result = '';
+  if (typeof obj === 'object' && !Array.isArray(obj)) {
+    result += '{';
+    const keys = Object.keys(obj);
+    const values = Object.values(obj);
+    for (let i = 0; i < keys.length; i += 1) {
+      result = result.concat('"', `${keys[i]}`, '"', ':', `${values[i]}`, ',');
+    }
+
+    result = result.substring(0, result.length - 1);
+    result += '}';
+  }
+
+  if (Array.isArray(obj)) {
+    result += '[';
+    for (let i = 0; i < obj.length; i += 1) {
+      result = result.concat(`${obj[i]}`, ',');
+    }
+
+    result = result.substring(0, result.length - 1);
+    result += ']';
+  }
+
+  return result;
 }
 
 
@@ -51,8 +82,19 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  let str = json;
+  str = str.substring(1, str.length - 1); // Убираем скобки {}
+  const strArr = str.split(',').map((value) => value.trim());
+  const obj = Object.create(proto);
+  for (let i = 0; i < strArr.length; i += 1) {
+    const tmpArr = strArr[i].split(':');
+    const key = tmpArr[0].substring(1, tmpArr[0].length - 1); // Убираем кавычки ""
+    const value = Number(tmpArr[1]);
+    obj[key] = value;
+  }
+
+  return obj;
 }
 
 
